@@ -35,41 +35,41 @@ def clean_line_number(data):
 
 # cut
 
-class ST3ClipboardCommandsCutAll(sublime_plugin.TextCommand):
+class ClipboardCommandsCutAll(sublime_plugin.TextCommand):
 	def run(self, edit):
 		self.view.run_command('select_all')
 		self.view.run_command('cut')
 
-class ST3ClipboardCommandsCutPlainText(sublime_plugin.TextCommand):
+class ClipboardCommandsCutPlainText(sublime_plugin.TextCommand):
 	def run(self, edit):
 		self.view.run_command('cut')
 		copy(clean_copy(clipboard()))
 
 # copy
 
-class ST3ClipboardCommandsCopyAll(sublime_plugin.TextCommand):
+class ClipboardCommandsCopyAll(sublime_plugin.TextCommand):
 	def run(self, edit):
 		copy(self.view.substr(sublime.Region(0, self.view.size())))
 
-class ST3ClipboardCommandsCopyPlainText(sublime_plugin.TextCommand):
+class ClipboardCommandsCopyPlainText(sublime_plugin.TextCommand):
 	def run(self, edit):
 		self.view.run_command('copy')
 		copy(clean_copy(clipboard()))
 
 # paste
 
-class ST3ClipboardCommandsPasteInAll(sublime_plugin.TextCommand):
+class ClipboardCommandsPasteInAll(sublime_plugin.TextCommand):
 	def run(self, edit):
 		self.view.run_command('select_all')
 		self.view.run_command('paste')
 
 
-class ST3ClipboardCommandsPastePlainText(sublime_plugin.TextCommand):
+class ClipboardCommandsPastePlainText(sublime_plugin.TextCommand):
 	def run(self, edit):
 		copy(clean_paste(clipboard()))
-		self.view.run_command('paste')
+		self.view.run_command('paste_and_indent')
 
-class ST3ClipboardCommandsPasteWithoutLineNumber(sublime_plugin.TextCommand):
+class ClipboardCommandsPasteWithoutLineNumber(sublime_plugin.TextCommand):
 	def run(self, edit):
 		copy(clean_line_number(clipboard()))
 		self.view.run_command('paste')
